@@ -1,0 +1,31 @@
+name: Run DA1 R Analysis
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'Digital Assignment 1/**'
+
+jobs:
+  run-r-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install R packages
+        run: install.packages(c("readxl", "dplyr", "tidyr", "lubridate", "ggplot2", "janitor", "DataExplorer", "corrplot", "scales"))
+        shell: Rscript {0}
+
+      - name: Run analysis script
+        working-directory: Digital Assignment 1
+        run: Rscript DA1_R_Code_Preprocessing_EDA.R
+
+      - name: Upload output charts
+        uses: actions/upload-artifact@v4
+        with:
+          name: da1-outputs
+          path: Digital Assignment 1/*.png
