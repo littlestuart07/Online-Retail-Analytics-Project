@@ -1,0 +1,4 @@
+risk_band,customers,avg_churn_prob,avg_lifetime_value,total_value,revenue_at_risk
+High,2615,0.79,772.3,2019552.37,1556127.81
+Low,989,0.15,9475.94,9371701.06,976223.01
+Medium,1677,0.46,1514.19,2539302.57,1135783.25
